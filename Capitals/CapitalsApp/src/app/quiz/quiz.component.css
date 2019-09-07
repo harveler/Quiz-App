@@ -1,0 +1,15 @@
+.container {
+    min-height: 30em;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    right: 25%;
+    bottom: 25%;
+    height: 15%;
+    width: 20%;
+    background-color: #DA6087;
+    border-radius: 12px;
+    -webkit-box-shadow: 6px 3px 26px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 3px 26px 0px rgba(0,0,0,0.75);
+    box-shadow: 6px 3px 26px 0px rgba(0,0,0,0.75);
+}
