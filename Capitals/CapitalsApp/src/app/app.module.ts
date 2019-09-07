@@ -1,3 +1,4 @@
+// modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -5,19 +6,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 // components
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { QuizComponent } from './quiz/quiz.component';
+import { MatButtonModule } from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    MatButtonModule,
     RouterModule.forRoot([
-      { path: '**', component: HomeComponent, pathMatch: 'full' },
+      { path: '**', component: QuizComponent, pathMatch: 'full' },
     ])
   ],
   providers: [],
