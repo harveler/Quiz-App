@@ -1,11 +1,9 @@
 // modules
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-import { ServerModule } from '@angular/platform-server';
-import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader';
+import { RouterModule, Routes } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
 // components
 import { AppComponent } from './app.component';
 import { QuizComponent } from './quiz/quiz.component';
@@ -17,12 +15,10 @@ import { MatButtonModule } from '@angular/material';
     QuizComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    ServerModule,
-    ModuleMapLoaderModule,
     MatButtonModule,
+    BrowserModule,
     RouterModule.forRoot([
       { path: '**', component: QuizComponent, pathMatch: 'full' },
     ])
