@@ -7,6 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./quiz.component.css']
 })
 export class QuizComponent implements OnInit {
+  chosenDifficulty = true;
+  difficulty: string;
 
   constructor() { }
 

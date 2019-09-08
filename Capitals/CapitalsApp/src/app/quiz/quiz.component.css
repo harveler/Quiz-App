@@ -13,3 +13,42 @@
     -moz-box-shadow: 6px 3px 26px 0px rgba(0,0,0,0.75);
     box-shadow: 6px 3px 26px 0px rgba(0,0,0,0.75);
 }
+
+section {
+    padding: 10%;
+    color: #fff;
+    text-align:center;
+}
+
+button {
+    margin: 5% auto;
+    width: 50%;
+    font-size: 100%;
+    border-radius: 7px;
+}
+
+button:focus {
+    outline: none !important;
+    border: 0 !important;
+}
+
+.button {
+    display: flex;
+    vertical-align: middle;
+}
+
+#easy {
+    background-color: #3f51b5;
+}
+
+#medium {
+    background-color: #4CAF50;
+}
+
+#hard {
+    background-color: #D81B60;
+}
+
+p {
+    padding-top: 5%;
+}

@@ -1,5 +1,12 @@
-<div class="container">
-    <h1>Start the Quiz</h1>
-    <button mat-flat-button>Take it easy!</button>
-    <h2>You fucking work.</h2>
-</div>
+<main class="container">
+  <section *ngIf="!chosenDifficulty">
+    <h3>How well do you know the world capitals?</h3>
+    <p>Start the Quiz by choosing one of the options below</p>
+    <div class="button"><button mat-flat-button id="easy">Take it easy</button></div>
+    <div class="button"><button mat-flat-button id="medium">Medium</button></div>
+    <div class="button"><button mat-flat-button id="hard">Hard enough</button></div>
+  </section>
+  <section *ngIf="chosenDifficulty">
+    <app-questions-answers [difficulty]=difficulty></app-questions-answers>
+  </section>
+</main>
