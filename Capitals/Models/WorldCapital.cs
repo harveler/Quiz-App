@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Capitals.Models
 {
-    public class WordlCapital
+    public class WorldCapital
     {
         [Key]
         public int Id { get; set; }
-        public List<Country> Countries { get; set; }
-        public List<Capital> Capitals { get; set; }
+        public string CountryName { get; set; }
+        public string CapitalName { get; set; }
         public int Difficulty { get; set; }
     }
 }
