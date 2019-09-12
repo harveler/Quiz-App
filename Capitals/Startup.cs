@@ -59,7 +59,7 @@ namespace Capitals
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
+                    template: "{quiz}/{action=Index}/{id?}");
             });
 
             app.UseSpa(spa =>
