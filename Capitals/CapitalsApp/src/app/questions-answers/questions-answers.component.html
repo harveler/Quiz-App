@@ -1,7 +1,10 @@
 <h3>What is the capital of {{ this.country }} ?</h3>
 <mat-radio-group class="container">
-  <mat-radio-button value="1">Short</mat-radio-button>
-  <mat-radio-button value="2">Longer version</mat-radio-button>
-  <mat-radio-button value="3">Way way longer version</mat-radio-button>
-  <mat-radio-button value="4">Sri Jawewardenepura Kotte</mat-radio-button>
+  <mat-radio-button value="1">{{ this.capital }}</mat-radio-button>
+  <mat-radio-button value="2">{{ this.capital }}</mat-radio-button>
+  <mat-radio-button value="3">{{ this.capital }}</mat-radio-button>
+  <mat-radio-button value="4">{{ this.capital }}</mat-radio-button>
 </mat-radio-group>
+<button *ngIf="!lastQuestion" mat-flat-button>Next</button>
+<button *ngIf="lastQuestion" mat-flat-button>Submit</button>
+

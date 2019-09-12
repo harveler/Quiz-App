@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
@@ -7,11 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizComponent implements OnInit {
   chosenDifficulty = false;
-  difficulty: string;
+  difficulty: number;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  getEasyQuestions() {
+    this.difficulty = 1;
+    console.log('Triggered!');
+    this.router.navigate(['/easy']);
+  }
+
+  getMediumQuestions() {
+    this.difficulty = 2;
+    this.router.navigate(['medium']);
+  }
+
+  getHardQuestions() {
+    this.difficulty = 3;
+    this.router.navigate(['hard']);
+  }
 }

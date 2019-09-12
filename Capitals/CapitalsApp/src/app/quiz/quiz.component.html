@@ -1,12 +1,7 @@
-<main class="container">
-  <section *ngIf="!chosenDifficulty">
+  <section>
     <h3>How well do you know the world capitals?</h3>
     <p>Start the Quiz by choosing one of the options below</p>
-    <div class="button"><button mat-flat-button id="easy">Take it easy</button></div>
-    <div class="button"><button mat-flat-button id="medium">Medium</button></div>
-    <div class="button"><button mat-flat-button id="hard">Hard enough</button></div>
+    <div class="button"><button mat-flat-button id="easy" (click)="getEasyQuestions()">Take it easy</button></div>
+    <div class="button"><button mat-flat-button id="medium" (click)="getMediumQuestions()">Medium</button></div>
+    <div class="button"><button mat-flat-button id="hard" (click)="getHardQuestions()">Hard enough</button></div>
   </section>
-  <section *ngIf="chosenDifficulty">
-    <app-questions-answers [difficulty]=difficulty></app-questions-answers>
-  </section>
-</main>

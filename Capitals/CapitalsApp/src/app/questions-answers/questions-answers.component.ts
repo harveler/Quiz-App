@@ -9,6 +9,8 @@ import { MatRadioButton } from '@angular/material';
 export class QuestionsAnswersComponent implements OnInit {
   @Input() difficulty: string;
   country = 'Fake Country';
+  capital = 'Fake Capital';
+  lastQuestion = false;
 
   constructor() { }
 
