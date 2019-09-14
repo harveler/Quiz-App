@@ -1,0 +1,9 @@
+<h3>You did it!</h3>
+<p class="score">{{ yourScore }}</p>
+<div class="review">
+  <div *ngIf="0 <= score && score <= 4">{{ bad }}</div>
+  <div *ngIf="5 <= score && score <= 8">{{ average }}</div>
+  <div *ngIf="9 <= score && score <= 12">{{ good }}</div>
+</div>
+<button mat-flat-button routerLink="/" color="primary">Go again or change difficulty!</button>
+<div class="icon"><fa-icon [icon]="faGlobe"></fa-icon></div>

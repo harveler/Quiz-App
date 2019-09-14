@@ -1,0 +1,22 @@
+h3 {
+    margin-bottom: 20px;
+}
+
+button {
+    margin-top: 30px;
+}
+
+.review {
+    font-size: 14px;
+    margin: 10px;
+}
+
+.score {
+    font-size: 20px;
+    margin: 15px;
+}
+
+.icon {
+    font-size: 100px !important;
+    margin: 10px;
+}
