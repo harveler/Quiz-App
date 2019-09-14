@@ -1,4 +1,4 @@
-import { IQuestion } from '../Models/questionmodel';
+import { IQuestion } from '../models/questionmodel';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';

@@ -1,7 +1,11 @@
 export class IQuestion {
     countryName: string;
-    option1: string;
-    option2: string;
-    option3: string;
-    option4: string;
+    options: IOptions[];
+}
+
+export class IOptions {
+    capitalName: string;
+    firstOption: string;
+    secondOption: string;
+    thirdOption: string;
 }
