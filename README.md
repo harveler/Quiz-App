@@ -12,3 +12,4 @@ This project was built using:
 - Node 10.16.3
 - .Net Core 2.2.203
 - Entity Framework Core 2.2.4
+- PostgreSQL 11.2
