@@ -13,3 +13,4 @@ This project was built using:
 - .Net Core 2.2.203
 - Entity Framework Core 2.2.4
 - PostgreSQL 11.2
+- Typescript 3.5.3
