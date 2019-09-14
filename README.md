@@ -8,9 +8,9 @@ Download the project locally using the command below.
 
 ## Technologies
 This project was built using:
-- Angular 8.3.3
-- Node 10.16.3
-- .Net Core 2.2.203
-- Entity Framework Core 2.2.4
+- Angular 8.3
+- Node 10.16
+- .Net Core 2.2
+- Entity Framework Core 2.2
 - PostgreSQL 11.2
 - Typescript 3.5.3
