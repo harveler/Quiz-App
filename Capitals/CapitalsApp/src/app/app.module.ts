@@ -7,13 +7,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule,  } from '@angular/router';
 // components
 import { AppComponent } from './app.component';
-import { QuestionsAnswersComponent } from './questions-answers/questions-answers.component';
-import { QuizComponent } from './quiz/quiz.component';
+import { QuestionsAnswersComponent } from './components/questions-answers/questions-answers.component';
+import { QuizComponent } from './components/quiz/quiz.component';
 // services
 import { QuizService } from './services/quiz.service';
-import { HardQuestionsComponent } from './hard-questions/hard-questions.component';
-import { EasyQuestionsComponent } from './easy-questions/easy-questions.component';
-import { MediumQuestionsComponent } from './medium-questions/medium-questions.component';
+import { HardQuestionsComponent } from './components/hard-questions/hard-questions.component';
+import { EasyQuestionsComponent } from './components/easy-questions/easy-questions.component';
+import { MediumQuestionsComponent } from './components/medium-questions/medium-questions.component';
+// pipes
+import { ShufflePipe } from './pipes/shuffle.pipe';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { MediumQuestionsComponent } from './medium-questions/medium-questions.co
     HardQuestionsComponent,
     EasyQuestionsComponent,
     MediumQuestionsComponent,
+    ShufflePipe,
   ],
   imports: [
     BrowserModule,

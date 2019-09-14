@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { QuizService } from '../services/quiz.service';
-import { IQuestion } from '../Models/questionmodel';
+import { QuizService } from '../../services/quiz.service';
+import { IQuestion } from '../../models/questionmodel';
 
 @Component({
   selector: 'app-medium-questions',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { QuizService } from '../services/quiz.service';
-import { IQuestion } from '../Models/questionmodel';
+import { QuizService } from '../../services/quiz.service';
+import { IQuestion } from '../../models/questionmodel';
 
 @Component({
   selector: 'app-hard-questions',
@@ -18,7 +18,6 @@ export class HardQuestionsComponent implements OnInit {
       (res) => this.questions = res,
       (error) => console.log(error)
     );
-    console.log(this.questions);
   }
 
 }

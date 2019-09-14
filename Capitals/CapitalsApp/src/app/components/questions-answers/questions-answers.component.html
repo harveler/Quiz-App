@@ -1,0 +1,8 @@
+<div *ngFor="let question of questions">
+  <h3>What is the capital of {{ question.countryName }} ?</h3>
+  <mat-radio-group class="container" [(ngModel)]="quizAnswer">
+      <mat-radio-button *ngFor="let option of (question.options | keyvalue | shuffle)" [value]="option.value">{{ option.value }}</mat-radio-button>
+  </mat-radio-group>
+  <button *ngIf="!lastQuestion" (click)="nextQuestion()" mat-flat-button>Next</button>
+  <button *ngIf="lastQuestion" (click)="submit()" mat-flat-button>Submit</button>
+</div>
