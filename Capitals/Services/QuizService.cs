@@ -16,24 +16,25 @@ namespace Capitals.Services
         {
             _context = context;
         }
-        public QuestionViewModel[] GetEasyQuestions()
+        public List<QuestionViewModel> GetEasyQuestions()
         {
             var data = _context.WorldCapitals.Where(c => c.Difficulty == 1);
             WorldCapital[] questions = new WorldCapital[12];
-            for (var i = 0; i <= 12; i++)
+            for (var i = 0; i < 12; i++)
             {
                 var data1 = GetRandomQuestion(data, questions);
                 questions[i] = data1;
             }
 
-            QuestionViewModel[] listOfQuestions = CreateQuestionViewModel(questions);
+            List<QuestionViewModel> listOfQuestions = CreateQuestionViewModel(questions);
 
             return listOfQuestions;
         }
 
         private WorldCapital GetRandomQuestion(IQueryable<WorldCapital> question, WorldCapital[] questions)
         {
-            var result = question.ElementAtOrDefault(new System.Random().Next() % question.Count());
+            var rnd = new Random();
+            var result = question.Skip(rnd.Next(0, question.Count())).Take(1).FirstOrDefault();
             var check = questions.Contains(result) ? 1 : 0;
             if (check == 1)
             {
@@ -48,7 +49,8 @@ namespace Capitals.Services
             List<string> list = new List<string>();
             for (var i = 0; i < 3; i++)
             {
-                var option = data.ElementAtOrDefault(new System.Random().Next() % data.Count());
+                var rnd = new Random();
+                var option = data.Skip(rnd.Next(0, data.Count())).Take(1).FirstOrDefault();
                 list.Add(option);
             }
             list.Add(worldCapital.CapitalName);
@@ -61,51 +63,54 @@ namespace Capitals.Services
             return GetRandomOtherOptions(worldCapital);
         }
 
-        private QuestionViewModel[] CreateQuestionViewModel(WorldCapital[] questions)
+        private List<QuestionViewModel> CreateQuestionViewModel(WorldCapital[] questions)
         {
-            QuestionViewModel[] list = new QuestionViewModel[12];
+            List<QuestionViewModel> list = new List<QuestionViewModel>();
             foreach (var question in questions)
             {
                 var options = GetRandomOtherOptions(question);
                 var result = new QuestionViewModel
                 {
                     CountryName = question.CountryName,
+                    Options = new Options
+                    {
                     CapitalName = question.CapitalName,
                     FirstOption = options[0],
                     SecondOption = options[1],
                     ThirdOption = options[2]
+                    }
                 };
-                list.Append(result);
+                list.Add(result);
             }
             return list;
         }
 
-        public QuestionViewModel[] GetMediumQuestions()
+        public List<QuestionViewModel> GetMediumQuestions()
         {
             var data = _context.WorldCapitals.Where(c => c.Difficulty == 2);
             WorldCapital[] questions = new WorldCapital[12];
-            for (var i = 0; i <= 12; i++)
+            for (var i = 0; i < 12; i++)
             {
                 var data1 = GetRandomQuestion(data, questions);
                 questions[i] = data1;
             }
 
-            QuestionViewModel[] listOfQuestions = CreateQuestionViewModel(questions);
+            List<QuestionViewModel> listOfQuestions = CreateQuestionViewModel(questions);
 
             return listOfQuestions;
         }
 
-        public QuestionViewModel[] GetHardQuestions()
+        public List<QuestionViewModel> GetHardQuestions()
         {
-            var data = _context.WorldCapitals.Where(c => c.Difficulty == 2);
+            var data = _context.WorldCapitals.Where(c => c.Difficulty == 3);
             WorldCapital[] questions = new WorldCapital[12];
-            for (var i = 0; i <= 12; i++)
+            for (var i = 0; i < 12; i++)
             {
                 var data1 = GetRandomQuestion(data, questions);
                 questions[i] = data1;
             }
 
-            QuestionViewModel[] listOfQuestions = CreateQuestionViewModel(questions);
+            List<QuestionViewModel> listOfQuestions = CreateQuestionViewModel(questions);
 
             return listOfQuestions;
         }
