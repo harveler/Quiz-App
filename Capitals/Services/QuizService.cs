@@ -38,9 +38,12 @@ namespace Capitals.Services
             var check = questions.Contains(result) ? 1 : 0;
             if (check == 1)
             {
-                GetRandomQuestion(question, questions);
-            };
-            return result;
+                return GetRandomQuestion(question, questions);
+            }
+            else
+            {
+                return result;
+            }
         }
 
         private List<string> GetRandomOtherOptions(WorldCapital worldCapital)
