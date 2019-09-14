@@ -10,6 +10,7 @@ using Capitals.Data;
 using Capitals.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using System;
 
 namespace Capitals
 {
@@ -71,6 +72,7 @@ namespace Capitals
                 // see https://go.microsoft.com/fwlink/?linkid=864501
 
                 spa.Options.SourcePath = "CapitalsApp";
+                spa.Options.StartupTimeout = new TimeSpan(0, 5, 0);
 
                 if (env.IsDevelopment())
                 {
