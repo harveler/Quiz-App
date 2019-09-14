@@ -1,96 +1,96 @@
 <div *ngIf="first">
     <h3>What is the capital of {{ questions[0].countryName }} ?</h3>
     <mat-radio-group class="container" [(ngModel)]="quizAnswer">
-      <mat-radio-button *ngFor="let option of (questions[0].options | keyvalue | shuffle)">
+      <mat-radio-button *ngFor="let option of (questions[0].options | keyvalue | shuffle)" [value]="option.value">
         {{ option.value }}</mat-radio-button>
     </mat-radio-group>
-    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('first', 'second', quizAnswer)" mat-flat-button>Next</button>
+    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('first', 'second');checkAnswer(quizAnswer,questions[0].options.capitalName)" mat-flat-button>Next</button>
 </div>
 <div *ngIf="second">
     <h3>What is the capital of {{ questions[1].countryName }} ?</h3>
     <mat-radio-group class="container" [(ngModel)]="quizAnswer">
-      <mat-radio-button *ngFor="let option of (questions[1].options | keyvalue | shuffle)">
+      <mat-radio-button *ngFor="let option of (questions[1].options | keyvalue | shuffle)" [value]="option.value">
         {{ option.value }}</mat-radio-button>
     </mat-radio-group>
-    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('second', 'third', quizAnswer)" mat-flat-button>Next</button>
+    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('second', 'third');checkAnswer(quizAnswer,questions[1].options.capitalName)" mat-flat-button>Next</button>
 </div>
 <div *ngIf="third">
     <h3>What is the capital of {{ questions[2].countryName }} ?</h3>
     <mat-radio-group class="container" [(ngModel)]="quizAnswer">
-      <mat-radio-button *ngFor="let option of (questions[2].options | keyvalue | shuffle)">
+      <mat-radio-button *ngFor="let option of (questions[2].options | keyvalue | shuffle)" [value]="option.value">
         {{ option.value }}</mat-radio-button>
     </mat-radio-group>
-    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('third', 'fourth', quizAnswer)" mat-flat-button>Next</button>
+    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('third', 'fourth');checkAnswer(quizAnswer, questions[2].options.capitalName)" mat-flat-button>Next</button>
 </div>
 <div *ngIf="fourth">
     <h3>What is the capital of {{ questions[3].countryName }} ?</h3>
     <mat-radio-group class="container" [(ngModel)]="quizAnswer">
-      <mat-radio-button *ngFor="let option of (questions[3].options | keyvalue | shuffle);">
+      <mat-radio-button *ngFor="let option of (questions[3].options | keyvalue | shuffle)" [value]="option.value">
         {{ option.value }}</mat-radio-button>
     </mat-radio-group>
-    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('fourth', 'fifth', quizAnswer)" mat-flat-button>Next</button>
+    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('fourth', 'fifth');checkAnswer(quizAnswer, questions[3].options.capitalName)" mat-flat-button>Next</button>
 </div>
 <div *ngIf="fifth">
     <h3>What is the capital of {{ questions[4].countryName }} ?</h3>
     <mat-radio-group class="container" [(ngModel)]="quizAnswer">
-      <mat-radio-button *ngFor="let option of (questions[4].options | keyvalue | shuffle)">
+      <mat-radio-button *ngFor="let option of (questions[4].options | keyvalue | shuffle)" [value]="option.value">
         {{ option.value }}</mat-radio-button>
     </mat-radio-group>
-    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('fifth', 'sixth', quizAnswer)" mat-flat-button>Next</button>
+    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('fifth', 'sixth');checkAnswer(quizAnswer, questions[4].options.capitalName)" mat-flat-button>Next</button>
 </div>
 <div *ngIf="sixth">
     <h3>What is the capital of {{ questions[5].countryName }} ?</h3>
     <mat-radio-group class="container" [(ngModel)]="quizAnswer">
-      <mat-radio-button *ngFor="let option of (questions[5].options | keyvalue | shuffle)">
+      <mat-radio-button *ngFor="let option of (questions[5].options | keyvalue | shuffle)" [value]="option.value">
         {{ option.value }}</mat-radio-button>
     </mat-radio-group>
-    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('sixth', 'seventh', quizAnswer)" mat-flat-button>Next</button>
+    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('sixth', 'seventh');checkAnswer(quizAnswer, questions[5].options.capitalName)" mat-flat-button>Next</button>
 </div>
 <div *ngIf="seventh">
     <h3>What is the capital of {{ questions[6].countryName }} ?</h3>
     <mat-radio-group class="container" [(ngModel)]="quizAnswer">
-      <mat-radio-button *ngFor="let option of (questions[6].options | keyvalue | shuffle)">
+      <mat-radio-button *ngFor="let option of (questions[6].options | keyvalue | shuffle)" [value]="option.value">
         {{ option.value }}</mat-radio-button>
     </mat-radio-group>
-    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('seventh', 'eighth', quizAnswer)" mat-flat-button>Next</button>
+    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('seventh', 'eighth');checkAnswer(quizAnswer, questions[6].options.capitalName)" mat-flat-button>Next</button>
 </div>
 <div *ngIf="eighth">
     <h3>What is the capital of {{ questions[7].countryName }} ?</h3>
     <mat-radio-group class="container" [(ngModel)]="quizAnswer">
-      <mat-radio-button *ngFor="let option of (questions[7].options | keyvalue | shuffle)">
+      <mat-radio-button *ngFor="let option of (questions[7].options | keyvalue | shuffle)" [value]="option.value">
         {{ option.value }}</mat-radio-button>
     </mat-radio-group>
-    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('eighth', 'nineth', quizAnswer)" mat-flat-button>Next</button>
+    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('eighth', 'nineth');checkAnswer(quizAnswer, questions[7].options.capitalName)" mat-flat-button>Next</button>
 </div>
 <div *ngIf="nineth">
     <h3>What is the capital of {{ questions[8].countryName }} ?</h3>
     <mat-radio-group class="container" [(ngModel)]="quizAnswer">
-      <mat-radio-button *ngFor="let option of (questions[8].options | keyvalue | shuffle)">
+      <mat-radio-button *ngFor="let option of (questions[8].options | keyvalue | shuffle)" [value]="option.value">
         {{ option.value }}</mat-radio-button>
     </mat-radio-group>
-    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('nineth', 'tenth', quizAnswer)" mat-flat-button>Next</button>
+    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('nineth', 'tenth');checkAnswer(quizAnswer, questions[8].options.capitalName)" mat-flat-button>Next</button>
 </div>
 <div *ngIf="tenth">
     <h3>What is the capital of {{ questions[9].countryName }} ?</h3>
     <mat-radio-group class="container" [(ngModel)]="quizAnswer">
-      <mat-radio-button *ngFor="let option of (questions[9].options | keyvalue | shuffle)">
+      <mat-radio-button *ngFor="let option of (questions[9].options | keyvalue | shuffle)" [value]="option.value">
         {{ option.value }}</mat-radio-button>
     </mat-radio-group>
-    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('tenth', 'eleventh', quizAnswer)" mat-flat-button>Next</button>
+    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('tenth', 'eleventh');checkAnswer(quizAnswer, questions[9].options.capitalName)" mat-flat-button>Next</button>
 </div>
 <div *ngIf="eleventh">
     <h3>What is the capital of {{ questions[10].countryName }} ?</h3>
     <mat-radio-group class="container" [(ngModel)]="quizAnswer">
-      <mat-radio-button *ngFor="let option of (questions[10].options | keyvalue | shuffle)">
+      <mat-radio-button *ngFor="let option of (questions[10].options | keyvalue | shuffle)" [value]="option.value">
         {{ option.value }}</mat-radio-button>
     </mat-radio-group>
-    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('eleventh', 'twelfth', quizAnswer)" mat-flat-button>Next</button>
+    <button *ngIf="quizAnswer !== undefined" (click)="nextQuestion('eleventh', 'twelfth');checkAnswer(quizAnswer, questions[10].options.capitalName)" mat-flat-button>Next</button>
 </div>
 <div *ngIf="twelfth">
     <h3>What is the capital of {{ questions[11].countryName }} ?</h3>
     <mat-radio-group class="container" [(ngModel)]="quizAnswer">
-      <mat-radio-button *ngFor="let option of (questions[11].options | keyvalue | shuffle)">
+      <mat-radio-button *ngFor="let option of (questions[11].options | keyvalue | shuffle)" [value]="option.value">
         {{ option.value }}</mat-radio-button>
     </mat-radio-group>
-    <button *ngIf="quizAnswer !== undefined" (click)="submit()" mat-flat-button>Submit</button>
+    <button *ngIf="quizAnswer !== undefined" (click)="checkAnswer(quizAnswer, questions[11].options.capitalName);submit()" mat-flat-button>Submit</button>
 </div>

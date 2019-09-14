@@ -2,6 +2,7 @@ import { QuizService } from '../../services/quiz.service';
 import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { MatRadioButton } from '@angular/material';
 import { IQuestion } from '../../models/questionmodel';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-questions-answers',
@@ -22,10 +23,10 @@ export class QuestionsAnswersComponent implements OnInit {
   tenth = false;
   eleventh = false;
   twelfth = false;
+  score = 0;
   quizAnswer: string;
-  score: number;
 
-  constructor(private quizService: QuizService, private ref: ChangeDetectorRef) { }
+  constructor(private router: Router, private ref: ChangeDetectorRef) { }
 
   ngOnInit() {
   }
@@ -34,26 +35,29 @@ export class QuestionsAnswersComponent implements OnInit {
     console.log(value);
   }
 
-  nextQuestion(previous: string, next: string, quizAnswer: string) {
-    this.checkAnswer(quizAnswer);
+  nextQuestion(previous: string, next: string) {
     this[previous] = !this[previous] ;
     this[next] = !this[next];
+  }
+
+  checkAnswer(quizAnswer: string, correctAnswer: string) {
+    console.log(quizAnswer + ' ' + correctAnswer);
+    const check = (quizAnswer === correctAnswer) ? 1 : 0;
+    console.log(check);
+    this.updateScore(check);
     this.quizAnswer = undefined;
   }
 
-  checkAnswer(quizAnswer: string) {
-    this.updateScore();
-  }
-
-  updateScore() {
-    if (true) {
-      return this.score += 1;
+  updateScore(check: number) {
+    if (check) {
+      this.score++;
     }
-    return null;
   }
 
   submit() {
+    console.log(this.score);
     console.log('Hooray, you\'re done');
+    this.router.navigateByUrl('/score', { state: { score: this.score } });
   }
 
 }

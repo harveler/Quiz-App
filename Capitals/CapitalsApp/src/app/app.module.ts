@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule, MatRadioModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { RouterModule,  } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 // components
 import { AppComponent } from './app.component';
 import { QuestionsAnswersComponent } from './components/questions-answers/questions-answers.component';
@@ -16,6 +18,7 @@ import { EasyQuestionsComponent } from './components/easy-questions/easy-questio
 import { MediumQuestionsComponent } from './components/medium-questions/medium-questions.component';
 // pipes
 import { ShufflePipe } from './pipes/shuffle.pipe';
+import { ScoreCardComponent } from './components/score-card/score-card.component';
 
 @NgModule({
   declarations: [
@@ -26,10 +29,12 @@ import { ShufflePipe } from './pipes/shuffle.pipe';
     EasyQuestionsComponent,
     MediumQuestionsComponent,
     ShufflePipe,
+    ScoreCardComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FontAwesomeModule,
     FormsModule,
     MatButtonModule,
     MatRadioModule,
@@ -38,6 +43,7 @@ import { ShufflePipe } from './pipes/shuffle.pipe';
       { path: 'easy', component: EasyQuestionsComponent, pathMatch: 'full' },
       { path: 'medium', component: MediumQuestionsComponent, pathMatch: 'full' },
       { path: 'hard', component: HardQuestionsComponent, pathMatch: 'full' },
+      { path: 'score', component: ScoreCardComponent, pathMatch: 'full' },
       { path: '**', component: QuizComponent, pathMatch: 'full' },
     ])
   ],
