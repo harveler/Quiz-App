@@ -17,8 +17,7 @@ export class QuizComponent implements OnInit {
 
   getEasyQuestions() {
     this.difficulty = 1;
-    console.log('Triggered!');
-    this.router.navigate(['/easy']);
+    this.router.navigate(['easy']);
   }
 
   getMediumQuestions() {

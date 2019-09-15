@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IQuestion } from '../../models/questionmodel';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
+import { throwToolbarMixedModesError } from '@angular/material';
 
 @Component({
   selector: 'app-easy-questions',
@@ -18,9 +19,11 @@ export class EasyQuestionsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.quizService.getEasyQuestions().subscribe(
       (res) => {
-        this.questions = res;
-        console.log(res);
-      },
+        if (res !== null) {
+          this.questions = res;
+        } else {
+          console.log('No questions found. Please try again later.');
+        }},
       (error) => console.log(error)
     );
   }

@@ -26,12 +26,16 @@ export class ScoreCardComponent implements OnInit, OnDestroy {
     this.subscription = this.activatedRoute.paramMap
       .pipe(map(() => window.history.state))
       .subscribe(res => {
-        if (res.score) {
+        if (res === null) {
+          this.yourScore = 'Oops, looks like you got here by accident. Take the quiz by clicking the button below.';
+        } else if (res.score >= 0 && res.score <= 12) {
           this.score = res.score;
-          return this.yourScore = 'Your score is: ' + res.score.toString();
+          this.yourScore = 'Your score is: ' + res.score.toString();
+        } else {
+          this.yourScore = 'Sorry. Something went wrong. Please click the button below to retake the test.';
         }
-        this.yourScore = 'Oops, looks like you got here by accident. Take the quiz by clicking the button below.';
-      });
+      },
+      (error) => console.log('error'));
   }
 
   ngOnDestroy(): void {

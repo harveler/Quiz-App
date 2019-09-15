@@ -16,10 +16,15 @@ export class MediumQuestionsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.quizService.getMediumQuestions().subscribe(
-      (res) => this.questions = res,
+      (res) => {
+        if (res !== null) {
+          this.questions = res;
+        } else {
+          console.log('No questions found. Please try again later.');
+        }
+      },
       (error) => console.log(error)
     );
-    console.log(this.questions);
   }
 
   ngOnDestroy(): void {

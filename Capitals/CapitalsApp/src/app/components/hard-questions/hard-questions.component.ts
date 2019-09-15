@@ -17,7 +17,13 @@ export class HardQuestionsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.quizService.getHardQuestions().subscribe(
-      (res) => this.questions = res,
+      (res) => {
+        if (res !== null) {
+          this.questions = res;
+        } else {
+          console.log('No questions found. Please try again later.');
+        }
+      },
       (error) => console.log(error)
     );
   }
