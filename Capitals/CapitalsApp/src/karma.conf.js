@@ -24,7 +24,7 @@ module.exports = function (config) {
     reporters: ['progress', 'karma-remap-istanbul'],
     remapIstanbulReporter: {
       reports: {
-        html: 'CapitalsApp/coverage'
+        html: 'coverage'
       }
     },
     port: 9876,
