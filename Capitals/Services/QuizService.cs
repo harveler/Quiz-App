@@ -16,7 +16,7 @@ namespace Capitals.Services
         {
             _context = context;
         }
-        public List<QuestionViewModel> GetEasyQuestions()
+        public virtual List<QuestionViewModel> GetEasyQuestions()
         {
             var data = _context.WorldCapitals.Where(c => c.Difficulty == 1);
             WorldCapital[] questions = new WorldCapital[12];
