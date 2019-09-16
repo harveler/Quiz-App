@@ -17,21 +17,26 @@ namespace CapitalsTests
         [Fact]
         public void GetQuestions_ValidDifficulty_ReturnsList()
         {
-            // I need to test that if I give this method a valid difficulty, it will return a list of questions
+            // arrange
             var service = new QuizService(_context);
 
+            // act
             var result = service.GetQuestions(1);
 
+            // assert
             Assert.True(result.Count() == 12);
         }
 
         [Fact]
         public void GetQuestions_InvalidDifficulty_ReturnsEmptyList()
         {
+            // arrange
             var service = new QuizService(_context);
 
+            // act
             var result = service.GetQuestions(4);
 
+            // assert
             Assert.Empty(result);
         }
     }

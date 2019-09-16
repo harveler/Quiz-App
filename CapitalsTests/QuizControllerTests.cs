@@ -43,6 +43,7 @@ namespace CapitalsTests
             var mockService = new Mock<QuizService>(null);
             mockService.Setup(u => u.GetQuestions(1)).Returns(list);
             var controller = new QuizController(mockService.Object);
+
             // act
             var result = controller.GetQuestions(1);
             var okResult = result as OkObjectResult;
@@ -82,6 +83,7 @@ namespace CapitalsTests
             var mockService = new Mock<QuizService>(null);
             mockService.Setup(u => u.GetQuestions(4)).Returns(list);
             var controller = new QuizController(mockService.Object);
+            
             // act
             var result = controller.GetQuestions(4);
             var okResult = result as OkObjectResult;
