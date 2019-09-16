@@ -1,11 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web.Http;
-using Capitals.Models;
-using Capitals.Models.ViewModels;
 using Capitals.Services;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,10 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using Capitals.Data;
 using Capitals.Models;
 using Capitals.Models.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Capitals.Services
 {
@@ -23,27 +22,27 @@ namespace Capitals.Services
                 return new List<QuestionViewModel>();
             }
 
-            var data = _context.WorldCapitals.Where(c => c.Difficulty == difficulty);
-            WorldCapital[] questions = new WorldCapital[12];
+            var allCapitalsOfSameDifficulty = _context.WorldCapitals.Where(c => c.Difficulty == difficulty);
+            WorldCapital[] quizQuestions = new WorldCapital[12];
             for (var i = 0; i < 12; i++)
             {
-                var data1 = GetRandomQuestion(data, questions);
-                questions[i] = data1;
+                var randomQuestion = GetRandomQuestion(allCapitalsOfSameDifficulty, quizQuestions);
+                quizQuestions[i] = randomQuestion;
             }
 
-            List<QuestionViewModel> listOfQuestions = CreateQuestionViewModel(questions);
+            List<QuestionViewModel> quizQuestionsAsViewModel = CreateQuestionViewModel(quizQuestions);
 
-            return listOfQuestions;
+            return quizQuestionsAsViewModel;
         }
 
-        private WorldCapital GetRandomQuestion(IQueryable<WorldCapital> question, WorldCapital[] questions)
+        private WorldCapital GetRandomQuestion(IQueryable<WorldCapital> collectionOfAllQuestions, WorldCapital[] quizQuestions)
         {
             var rnd = new Random();
-            var result = question.Skip(rnd.Next(0, question.Count())).Take(1).FirstOrDefault();
-            var check = questions.Contains(result) ? 1 : 0;
+            var result = collectionOfAllQuestions.Skip(rnd.Next(0, collectionOfAllQuestions.Count())).Take(1).FirstOrDefault();
+            var check = quizQuestions.Contains(result) ? 1 : 0;
             if (check == 1)
             {
-                return GetRandomQuestion(question, questions);
+                return GetRandomQuestion(collectionOfAllQuestions, quizQuestions);
             }
             else
             {
@@ -51,46 +50,46 @@ namespace Capitals.Services
             }
         }
 
-        private List<string> GetRandomOtherOptions(WorldCapital worldCapital)
+        private List<QuestionViewModel> CreateQuestionViewModel(WorldCapital[] quizQuestions)
         {
-            var data = _context.WorldCapitals.Select(c => c.CapitalName).ToList();
-            List<string> list = new List<string>();
-            for (var i = 0; i < 3; i++)
+            List<QuestionViewModel> questionsWithOptions = new List<QuestionViewModel>();
+            foreach (var question in quizQuestions)
             {
-                var rnd = new Random();
-                var option = data.Skip(rnd.Next(0, data.Count())).Take(1).FirstOrDefault();
-                list.Add(option);
-            }
-            list.Add(worldCapital.CapitalName);
-            var result = list.Distinct().Count() == list.Count();
-            if (result)
-            {
-                list.Remove(worldCapital.CapitalName);
-                return list;
-            }
-            return GetRandomOtherOptions(worldCapital);
-        }
-
-        private List<QuestionViewModel> CreateQuestionViewModel(WorldCapital[] questions)
-        {
-            List<QuestionViewModel> list = new List<QuestionViewModel>();
-            foreach (var question in questions)
-            {
-                var options = GetRandomOtherOptions(question);
+                var questionOptions = GetRandomOtherOptions(question);
                 var result = new QuestionViewModel
                 {
                     CountryName = question.CountryName,
                     Options = new Options
                     {
                     CapitalName = question.CapitalName,
-                    FirstOption = options[0],
-                    SecondOption = options[1],
-                    ThirdOption = options[2]
+                    FirstOption = questionOptions[0],
+                    SecondOption = questionOptions[1],
+                    ThirdOption = questionOptions[2]
                     }
                 };
-                list.Add(result);
+                questionsWithOptions.Add(result);
             }
-            return list;
+            return questionsWithOptions;
+        }
+
+        private List<string> GetRandomOtherOptions(WorldCapital worldCapital)
+        {
+            var allCapitalNames = _context.WorldCapitals.Select(c => c.CapitalName).ToList();
+            List<string> questionOptions = new List<string>();
+            for (var i = 0; i < 3; i++)
+            {
+                var rnd = new Random();
+                var option = allCapitalNames.Skip(rnd.Next(0, allCapitalNames.Count())).Take(1).FirstOrDefault();
+                questionOptions.Add(option);
+            }
+            questionOptions.Add(worldCapital.CapitalName);
+            var result = questionOptions.Distinct().Count() == questionOptions.Count();
+            if (result)
+            {
+                questionOptions.Remove(worldCapital.CapitalName);
+                return questionOptions;
+            }
+            return GetRandomOtherOptions(worldCapital);
         }
     }
 }
