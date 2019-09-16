@@ -1,10 +1,10 @@
 # World Capitals Quiz App
-A simple quiz app for world capitals using Angular, C#, .Net Core, EF and PostgreSQL.
+A simple quiz app for world capitals using Angular, C#, .Net Core, EF and PostgreSQL. The questions are sourced from a database using a RESTful API.
 
 ## Getting Started
 Download the project locally using the command below.
 
-`git clone https://github.com/harveler/Quiz-App.git`
+```git clone https://github.com/harveler/Quiz-App.git```
 
 ## Technologies
 This project was built using:
