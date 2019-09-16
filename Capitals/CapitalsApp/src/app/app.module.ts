@@ -11,12 +11,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppComponent } from './app.component';
 import { QuestionsAnswersComponent } from './components/questions-answers/questions-answers.component';
 import { QuizComponent } from './components/quiz/quiz.component';
+
 // services
 import { QuizService } from './services/quiz.service';
+
 // pipes
 import { ShufflePipe } from './pipes/shuffle.pipe';
 import { ScoreCardComponent } from './components/score-card/score-card.component';
-import { DummyScoreCardComponent, DummyQuestionComponent } from './testing/mock.components.specs';
+import { DummyComponent } from './testing/mock.components.specs';
 
 @NgModule({
   declarations: [
@@ -24,8 +26,7 @@ import { DummyScoreCardComponent, DummyQuestionComponent } from './testing/mock.
     QuestionsAnswersComponent,
     QuizComponent,
     ShufflePipe,
-    DummyScoreCardComponent,
-    DummyQuestionComponent,
+    DummyComponent,
     ScoreCardComponent,
   ],
   imports: [
@@ -37,8 +38,8 @@ import { DummyScoreCardComponent, DummyQuestionComponent } from './testing/mock.
     MatRadioModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: QuizComponent, pathMatch: 'full' },
-      { path: 'questions', component: QuestionsAnswersComponent, pathMatch: 'full' },
+      { path: 'quiz', component: QuizComponent, pathMatch: 'full' },
+      { path: 'questions', component: QuestionsAnswersComponent },
       { path: 'score', component: ScoreCardComponent, pathMatch: 'full' },
       { path: '**', component: QuizComponent, pathMatch: 'full' },
     ])
