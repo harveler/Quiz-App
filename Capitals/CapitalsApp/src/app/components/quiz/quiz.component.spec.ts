@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { QuizComponent } from './quiz.component';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { DummyQuestionComponent } from 'src/app/testing/mock.components.specs';
+import { DummyComponent } from 'src/app/testing/mock.components.specs';
 
 const router = {
   navigateByUrl: jasmine.createSpy('navigateByUrl')
@@ -17,11 +17,11 @@ describe('QuizComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         QuizComponent,
-        DummyQuestionComponent
+        DummyComponent
       ],
       imports: [
         RouterTestingModule.withRoutes([
-          { path: 'questions', component: DummyQuestionComponent, pathMatch: 'full' },
+          { path: 'questions', component: DummyComponent, pathMatch: 'full' },
         ]),
       ],
       providers: [ { provide: Router, useValue: router}],
@@ -48,7 +48,7 @@ describe('QuizComponent', () => {
     button.click();
     fixture.detectChanges();
 
-    expect(router.navigateByUrl).toHaveBeenCalledWith('/questions', { state: { difficulty: 1 } });
+    expect(router.navigateByUrl).toHaveBeenCalledWith('questions', { state: { difficulty: 1 } });
     expect(component.getQuestions).toHaveBeenCalled();
   });
 });

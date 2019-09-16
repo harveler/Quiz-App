@@ -11,7 +11,7 @@ import { SimpleChange, ChangeDetectionStrategy } from '@angular/core';
 import { ScoreCardComponent } from '../score-card/score-card.component';
 import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { DummyScoreCardComponent } from 'src/app/testing/mock.components.specs';
+import { DummyComponent } from 'src/app/testing/mock.components.specs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 const testData: IQuestion[] = [
@@ -55,7 +55,7 @@ describe('QuestionsAnswersComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DummyScoreCardComponent,
+        DummyComponent,
         QuestionsAnswersComponent,
         ScoreCardComponent,
         ShufflePipe,
@@ -67,7 +67,8 @@ describe('QuestionsAnswersComponent', () => {
         MatButtonModule,
         MatRadioModule,
         RouterTestingModule.withRoutes([
-          { path: 'score', component: DummyScoreCardComponent, pathMatch: 'full' },
+          { path: 'score', component: DummyComponent, pathMatch: 'full' },
+          { path: 'quiz', component: DummyComponent, pathMatch: 'full' },
         ]),
       ],
     })
@@ -79,9 +80,6 @@ describe('QuestionsAnswersComponent', () => {
     component = fixture.componentInstance;
     component.questions = testData;
     fixture.detectChanges();
-    component.ngOnChanges({
-      questions: new SimpleChange(false, true, true)
-    });
   });
 
   it('should create', () => {
@@ -89,6 +87,7 @@ describe('QuestionsAnswersComponent', () => {
   });
 
   it('should display next questions if user clicks on the NEXT button', () => {
+    component.first = true;
     component.quizAnswer = 'Bmzklfrpz City';
     fixture.detectChanges();
     const button = fixture.debugElement.nativeElement.querySelector('button');
