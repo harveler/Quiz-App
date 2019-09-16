@@ -1,5 +1,5 @@
 # Project Title
-A quiz app for world capitals using Angular, C#, .Net, Entity Framework and PostgreSQL.
+A simple quiz app for world capitals using Angular, C#, .Net Core, EF and PostgreSQL.
 
 ## Getting Started
 Download the project locally using the command below.
