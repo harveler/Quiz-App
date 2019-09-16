@@ -14,3 +14,5 @@ This project was built using:
 - Entity Framework Core 2.2
 - PostgreSQL 11.2
 - Typescript 3.5.3
+- Jasmine
+- XUnit
