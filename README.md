@@ -1,4 +1,4 @@
-# Project Title
+# World Capitals Quiz App
 A simple quiz app for world capitals using Angular, C#, .Net Core, EF and PostgreSQL.
 
 ## Getting Started
