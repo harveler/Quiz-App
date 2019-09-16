@@ -21,26 +21,10 @@ namespace Capitals.Controllers
         }
 
         [HttpGet]
-        [Route("GetEasyQuestions")]
-        public IActionResult GetEasyQuestions()
+        [Route("GetQuestions/{difficulty}")]
+        public IActionResult GetQuestions(int difficulty)
         {
-            var result = _service.GetEasyQuestions();
-            return Ok(result);
-        }
-
-        [HttpGet]
-        [Route("GetMediumQuestions")]
-        public IActionResult GetMediumQuestions()
-        {
-            var result = _service.GetMediumQuestions();
-            return Ok(result);
-        }
-
-        [HttpGet]
-        [Route("GetHardQuestions")]
-        public IActionResult GetHardQuestions()
-        {
-            var result = _service.GetHardQuestions();
+            var result = _service.GetQuestions(difficulty);
             return Ok(result);
         }
     }

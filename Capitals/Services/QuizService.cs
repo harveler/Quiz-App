@@ -16,9 +16,9 @@ namespace Capitals.Services
         {
             _context = context;
         }
-        public virtual List<QuestionViewModel> GetEasyQuestions()
+        public virtual List<QuestionViewModel> GetQuestions(int difficulty)
         {
-            var data = _context.WorldCapitals.Where(c => c.Difficulty == 1);
+            var data = _context.WorldCapitals.Where(c => c.Difficulty == difficulty);
             WorldCapital[] questions = new WorldCapital[12];
             for (var i = 0; i < 12; i++)
             {
@@ -86,36 +86,6 @@ namespace Capitals.Services
                 list.Add(result);
             }
             return list;
-        }
-
-        public List<QuestionViewModel> GetMediumQuestions()
-        {
-            var data = _context.WorldCapitals.Where(c => c.Difficulty == 2);
-            WorldCapital[] questions = new WorldCapital[12];
-            for (var i = 0; i < 12; i++)
-            {
-                var data1 = GetRandomQuestion(data, questions);
-                questions[i] = data1;
-            }
-
-            List<QuestionViewModel> listOfQuestions = CreateQuestionViewModel(questions);
-
-            return listOfQuestions;
-        }
-
-        public List<QuestionViewModel> GetHardQuestions()
-        {
-            var data = _context.WorldCapitals.Where(c => c.Difficulty == 3);
-            WorldCapital[] questions = new WorldCapital[12];
-            for (var i = 0; i < 12; i++)
-            {
-                var data1 = GetRandomQuestion(data, questions);
-                questions[i] = data1;
-            }
-
-            List<QuestionViewModel> listOfQuestions = CreateQuestionViewModel(questions);
-
-            return listOfQuestions;
         }
     }
 }
