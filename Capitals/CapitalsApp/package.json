@@ -37,6 +37,7 @@
     "core-js": "^2.5.7",
     "jquery": "3.4.1",
     "karma-remap-istanbul": "^0.6.0",
+    "lodash.template": "^4.5.0",
     "material": "^0.4.1",
     "popper.js": "^1.15.0",
     "python": "0.0.4",
