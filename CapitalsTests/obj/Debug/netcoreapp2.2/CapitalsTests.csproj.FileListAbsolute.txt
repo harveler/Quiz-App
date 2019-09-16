@@ -1,7 +1,3 @@
-C:\Users\svabo\angular-app\Capitals\CapitalsTests\obj\Debug\netcoreapp2.2\CapitalsTests.csprojAssemblyReference.cache
-C:\Users\svabo\angular-app\Capitals\CapitalsTests\obj\Debug\netcoreapp2.2\CapitalsTests.csproj.CoreCompileInputs.cache
-C:\Users\svabo\angular-app\Capitals\CapitalsTests\obj\Debug\netcoreapp2.2\CapitalsTests.AssemblyInfoInputs.cache
-C:\Users\svabo\angular-app\Capitals\CapitalsTests\obj\Debug\netcoreapp2.2\CapitalsTests.AssemblyInfo.cs
 C:\Users\svabo\angular-app\Capitals\CapitalsTests\bin\Debug\netcoreapp2.2\Capitals.Views.dll
 C:\Users\svabo\angular-app\Capitals\CapitalsTests\bin\Debug\netcoreapp2.2\Capitals.Views.pdb
 C:\Users\svabo\angular-app\Capitals\CapitalsTests\bin\Debug\netcoreapp2.2\xunit.runner.visualstudio.dotnetcore.testadapter.dll
@@ -14,6 +10,10 @@ C:\Users\svabo\angular-app\Capitals\CapitalsTests\bin\Debug\netcoreapp2.2\Capita
 C:\Users\svabo\angular-app\Capitals\CapitalsTests\bin\Debug\netcoreapp2.2\CapitalsTests.pdb
 C:\Users\svabo\angular-app\Capitals\CapitalsTests\bin\Debug\netcoreapp2.2\Capitals.dll
 C:\Users\svabo\angular-app\Capitals\CapitalsTests\bin\Debug\netcoreapp2.2\Capitals.pdb
+C:\Users\svabo\angular-app\Capitals\CapitalsTests\obj\Debug\netcoreapp2.2\CapitalsTests.csprojAssemblyReference.cache
+C:\Users\svabo\angular-app\Capitals\CapitalsTests\obj\Debug\netcoreapp2.2\CapitalsTests.csproj.CoreCompileInputs.cache
+C:\Users\svabo\angular-app\Capitals\CapitalsTests\obj\Debug\netcoreapp2.2\CapitalsTests.AssemblyInfoInputs.cache
+C:\Users\svabo\angular-app\Capitals\CapitalsTests\obj\Debug\netcoreapp2.2\CapitalsTests.AssemblyInfo.cs
 C:\Users\svabo\angular-app\Capitals\CapitalsTests\obj\Debug\netcoreapp2.2\CapitalsTests.csproj.CopyComplete
 C:\Users\svabo\angular-app\Capitals\CapitalsTests\obj\Debug\netcoreapp2.2\CapitalsTests.dll
 C:\Users\svabo\angular-app\Capitals\CapitalsTests\obj\Debug\netcoreapp2.2\CapitalsTests.pdb
