@@ -1,9 +1,9 @@
-export class IQuestion {
+export interface Question {
     countryName: string;
-    options: IOptions[];
+    options: QuestionOptions[];
 }
 
-export class IOptions {
+export interface QuestionOptions {
     capitalName: string;
     firstOption: string;
     secondOption: string;
