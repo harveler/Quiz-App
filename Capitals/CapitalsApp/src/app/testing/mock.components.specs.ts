@@ -8,4 +8,11 @@ import { Component } from '@angular/core';
 
 export class DummyScoreCardComponent { }
 
+@Component({
+    selector: 'app-mock-question',
+    template: '<div>Dummy home component</div>',
+    styleUrls: []
+})
+
+export class DummyQuestionComponent { }
 

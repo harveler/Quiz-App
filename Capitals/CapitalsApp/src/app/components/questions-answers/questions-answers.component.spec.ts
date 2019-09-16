@@ -12,6 +12,7 @@ import { ScoreCardComponent } from '../score-card/score-card.component';
 import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DummyScoreCardComponent } from 'src/app/testing/mock.components.specs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 const testData: IQuestion[] = [
   {
@@ -43,34 +44,34 @@ const testData: IQuestion[] = [
   }
 ];
 
-const router =  {
-  navigateByUrl: jasmine.createSpy('navigateByUrl')
-};
-
 describe('QuestionsAnswersComponent', () => {
   let component: QuestionsAnswersComponent;
   let fixture: ComponentFixture<QuestionsAnswersComponent>;
 
+  const router = {
+    navigateByUrl: jasmine.createSpy('navigateByUrl')
+  };
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        QuestionsAnswersComponent,
-        ShufflePipe,
-        ScoreCardComponent,
         DummyScoreCardComponent,
+        QuestionsAnswersComponent,
+        ScoreCardComponent,
+        ShufflePipe,
       ],
       imports: [
-        MatButtonModule,
-        MatRadioModule,
+        HttpClientTestingModule,
         FontAwesomeModule,
         FormsModule,
+        MatButtonModule,
+        MatRadioModule,
         RouterTestingModule.withRoutes([
           { path: 'score', component: DummyScoreCardComponent, pathMatch: 'full' },
-      ]),
-    ],
-      providers: [{provide: Router, useValue: router}]
+        ]),
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -85,13 +86,6 @@ describe('QuestionsAnswersComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should populate template with first countryName once the component receives questions from parent', () => {
-    const content = fixture.debugElement.nativeElement;
-    fixture.detectChanges();
-    expect(component.first).toBeTruthy();
-    expect(content.innerHTML).toContain('Berzerkistan');
   });
 
   it('should display next questions if user clicks on the NEXT button', () => {
@@ -119,10 +113,10 @@ describe('QuestionsAnswersComponent', () => {
 
   it('should navigate to score component and pass on the score on submit', () => {
     component.score = 0;
+    const spy = spyOn(component, 'submit').and.callFake(() => router.navigateByUrl('/score', { state: { score: component.score } }));
     component.submit();
-
     fixture.detectChanges();
-
+    expect(spy).toHaveBeenCalled();
     expect(router.navigateByUrl).toHaveBeenCalledWith('/score', { state: { score: 0 } });
   });
 });
