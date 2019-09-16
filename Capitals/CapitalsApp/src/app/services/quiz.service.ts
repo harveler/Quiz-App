@@ -16,18 +16,8 @@ export class QuizService {
 
   constructor(private http: HttpClient) { }
 
-  getEasyQuestions(): Observable<IQuestion[]> {
-    const url = this.endpoint + 'GetEasyQuestions';
-    return this.http.get<IQuestion[]>(url, httpOptions);
-  }
-
-  getMediumQuestions(): Observable<IQuestion[]> {
-    const url = this.endpoint + 'GetMediumQuestions';
-    return this.http.get<IQuestion[]>(url, httpOptions);
-  }
-
-  getHardQuestions(): Observable<IQuestion[]> {
-    const url = this.endpoint + 'GetHardQuestions';
+  getQuestions(difficulty: number): Observable<IQuestion[]> {
+    const url = this.endpoint + `GetQuestions/${difficulty}`;
     return this.http.get<IQuestion[]>(url, httpOptions);
   }
 }

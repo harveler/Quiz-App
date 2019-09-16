@@ -1,6 +1,9 @@
+import { QuizService } from './../../services/quiz.service';
 import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { IQuestion } from '../../models/questionmodel';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-questions-answers',
@@ -8,8 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./questions-answers.component.css']
 })
 export class QuestionsAnswersComponent implements OnInit, OnChanges {
-  @Input() questions: IQuestion[];
-  first = false;
+  questions: IQuestion[];
+  first = true;
   second = false;
   third = false;
   fourth = false;
@@ -24,9 +27,23 @@ export class QuestionsAnswersComponent implements OnInit, OnChanges {
   score = 0;
   quizAnswer: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private quizService: QuizService) { }
 
   ngOnInit() {
+    this.activatedRoute.paramMap
+    .pipe(map(() => window.history.state))
+    .subscribe(res => {
+      if (res === null) {
+        return;
+      }
+      this.quizService.getQuestions(res.difficulty).subscribe(result => {
+        if (result === null) {
+          return;
+        }
+        this.questions = result;
+      });
+    },
+    (error) => console.log('error'));
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -53,6 +70,7 @@ export class QuestionsAnswersComponent implements OnInit, OnChanges {
   }
 
   submit() {
+    console.log(this.score);
     this.router.navigateByUrl('/score', { state: { score: this.score } });
   }
 

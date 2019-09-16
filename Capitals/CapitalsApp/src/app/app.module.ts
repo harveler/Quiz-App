@@ -13,22 +13,19 @@ import { QuestionsAnswersComponent } from './components/questions-answers/questi
 import { QuizComponent } from './components/quiz/quiz.component';
 // services
 import { QuizService } from './services/quiz.service';
-import { HardQuestionsComponent } from './components/hard-questions/hard-questions.component';
-import { EasyQuestionsComponent } from './components/easy-questions/easy-questions.component';
-import { MediumQuestionsComponent } from './components/medium-questions/medium-questions.component';
 // pipes
 import { ShufflePipe } from './pipes/shuffle.pipe';
 import { ScoreCardComponent } from './components/score-card/score-card.component';
+import { DummyScoreCardComponent, DummyQuestionComponent } from './testing/mock.components.specs';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuestionsAnswersComponent,
     QuizComponent,
-    HardQuestionsComponent,
-    EasyQuestionsComponent,
-    MediumQuestionsComponent,
     ShufflePipe,
+    DummyScoreCardComponent,
+    DummyQuestionComponent,
     ScoreCardComponent,
   ],
   imports: [
@@ -41,9 +38,7 @@ import { ScoreCardComponent } from './components/score-card/score-card.component
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: QuizComponent, pathMatch: 'full' },
-      { path: 'easy', component: EasyQuestionsComponent, pathMatch: 'full' },
-      { path: 'medium', component: MediumQuestionsComponent, pathMatch: 'full' },
-      { path: 'hard', component: HardQuestionsComponent, pathMatch: 'full' },
+      { path: 'questions', component: QuestionsAnswersComponent, pathMatch: 'full' },
       { path: 'score', component: ScoreCardComponent, pathMatch: 'full' },
       { path: '**', component: QuizComponent, pathMatch: 'full' },
     ])
