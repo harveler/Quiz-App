@@ -1,5 +1,3 @@
-using Capitals.Models.ViewModels;
-
 namespace Capitals.Models.ViewModels
 {
     public class QuestionViewModel

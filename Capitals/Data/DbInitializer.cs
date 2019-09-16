@@ -1,5 +1,5 @@
-using System.Linq;
 using Capitals.Models;
+using System.Linq;
 
 namespace Capitals.Data
 {

@@ -1,17 +1,7 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-using Capitals;
-using Capitals.Controllers;
-using Capitals.Models.ViewModels;
-using Capitals.Services;
-using Microsoft.AspNetCore.Mvc;
-using Moq;
-using Xunit;
 using Capitals.Data;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
+using Capitals.Services;
+using System.Linq;
+using Xunit;
 
 namespace CapitalsTests
 {
