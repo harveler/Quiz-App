@@ -1,18 +1,17 @@
 import { QuizService } from './../../services/quiz.service';
-import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IQuestion } from '../../models/questionmodel';
 import { Router, ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-questions-answers',
   templateUrl: './questions-answers.component.html',
   styleUrls: ['./questions-answers.component.css']
 })
-export class QuestionsAnswersComponent implements OnInit, OnChanges {
+export class QuestionsAnswersComponent implements OnInit {
   questions: IQuestion[];
-  first = true;
+  first = false;
   second = false;
   third = false;
   fourth = false;
@@ -31,25 +30,21 @@ export class QuestionsAnswersComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.activatedRoute.paramMap
-    .pipe(map(() => window.history.state))
-    .subscribe(res => {
-      if (res === null) {
-        return;
-      }
-      this.quizService.getQuestions(res.difficulty).subscribe(result => {
-        if (result === null) {
-          return;
+      .pipe(map(() => window.history.state))
+      .subscribe(res => {
+        if (res === null || res.difficulty === undefined) {
+          this.router.navigate(['quiz']);
+        } else {
+          this.quizService.getQuestions(res.difficulty).subscribe(result => {
+            if (result === null) {
+              return;
+            }
+            this.questions = result;
+            this.first = true;
+          });
         }
-        this.questions = result;
-      });
-    },
-    (error) => console.log('error'));
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['questions'].currentValue) {
-      this.first = true;
-    }
+      },
+        (error) => console.log('error'));
   }
 
   nextQuestion(previous: string, next: string) {
@@ -70,7 +65,6 @@ export class QuestionsAnswersComponent implements OnInit, OnChanges {
   }
 
   submit() {
-    console.log(this.score);
     this.router.navigateByUrl('/score', { state: { score: this.score } });
   }
 
