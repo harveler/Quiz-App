@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,6 +14,6 @@ export class QuizComponent implements OnInit {
   }
 
   getQuestions(level: number) {
-    this.router.navigateByUrl('/questions', { state: { difficulty: level } });
+    this.router.navigateByUrl('questions', { state: { difficulty: level } });
   }
 }
