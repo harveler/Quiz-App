@@ -1,6 +1,8 @@
 # World Capitals Quiz App
 A simple quiz app for world capitals using Angular, C#, .Net Core, EF and PostgreSQL. The questions are sourced from a database using a RESTful API.
 
+[![Build Status](https://api.travis-ci.org/harveler/Quiz-App.png?branch=master)](https://travis-ci.org/harveler/Quiz-App)
+
 ## Getting Started
 Download the project locally using the command below.
 
