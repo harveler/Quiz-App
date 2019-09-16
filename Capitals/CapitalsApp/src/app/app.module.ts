@@ -1,39 +1,39 @@
 // modules
 import { BrowserModule } from '@angular/platform-browser';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule, MatRadioModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { RouterModule,  } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // components
 import { AppComponent } from './app.component';
+import { DummyComponent } from './testing/mock.components.specs';
 import { QuestionsAnswersComponent } from './components/questions-answers/questions-answers.component';
 import { QuizComponent } from './components/quiz/quiz.component';
+import { ScoreCardComponent } from './components/score-card/score-card.component';
 
 // services
 import { QuizService } from './services/quiz.service';
 
 // pipes
 import { ShufflePipe } from './pipes/shuffle.pipe';
-import { ScoreCardComponent } from './components/score-card/score-card.component';
-import { DummyComponent } from './testing/mock.components.specs';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DummyComponent,
     QuestionsAnswersComponent,
     QuizComponent,
-    ShufflePipe,
-    DummyComponent,
     ScoreCardComponent,
+    ShufflePipe,
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     FontAwesomeModule,
     FormsModule,
+    HttpClientModule,
     MatButtonModule,
     MatRadioModule,
     ReactiveFormsModule,

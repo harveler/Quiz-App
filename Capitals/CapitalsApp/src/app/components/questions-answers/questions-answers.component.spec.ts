@@ -1,20 +1,21 @@
-import { FormsModule } from '@angular/forms';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { QuestionsAnswersComponent } from './questions-answers.component';
-import { MatButtonModule, MatRadioModule } from '@angular/material';
-import { ShufflePipe } from 'src/app/pipes/shuffle.pipe';
-import { IQuestion } from 'src/app/models/questionmodel';
-import { By } from '@angular/platform-browser';
-import { text } from '@fortawesome/fontawesome-svg-core';
-import { SimpleChange, ChangeDetectionStrategy } from '@angular/core';
-import { ScoreCardComponent } from '../score-card/score-card.component';
-import { Router } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+// components
 import { DummyComponent } from 'src/app/testing/mock.components.specs';
+import { QuestionsAnswersComponent } from './questions-answers.component';
+import { ScoreCardComponent } from '../score-card/score-card.component';
+// modules
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatButtonModule, MatRadioModule } from '@angular/material';
+import { RouterTestingModule } from '@angular/router/testing';
+// pipes
+import { ShufflePipe } from 'src/app/pipes/shuffle.pipe';
+// models
+import { Question } from 'src/app/models/questionmodel';
+import { Subscription } from 'rxjs';
 
-const testData: IQuestion[] = [
+const testData: Question[] = [
   {
     countryName: 'Berzerkistan',
     options: [{
@@ -44,13 +45,13 @@ const testData: IQuestion[] = [
   }
 ];
 
+const router = {
+  navigateByUrl: jasmine.createSpy('navigateByUrl')
+};
+
 describe('QuestionsAnswersComponent', () => {
   let component: QuestionsAnswersComponent;
   let fixture: ComponentFixture<QuestionsAnswersComponent>;
-
-  const router = {
-    navigateByUrl: jasmine.createSpy('navigateByUrl')
-  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -61,9 +62,9 @@ describe('QuestionsAnswersComponent', () => {
         ShufflePipe,
       ],
       imports: [
-        HttpClientTestingModule,
         FontAwesomeModule,
         FormsModule,
+        HttpClientTestingModule,
         MatButtonModule,
         MatRadioModule,
         RouterTestingModule.withRoutes([
@@ -87,35 +88,61 @@ describe('QuestionsAnswersComponent', () => {
   });
 
   it('should display next questions if user clicks on the NEXT button', () => {
+    // arrange
     component.first = true;
     component.quizAnswer = 'Bmzklfrpz City';
     fixture.detectChanges();
     const button = fixture.debugElement.nativeElement.querySelector('button');
-    const content = fixture.debugElement.nativeElement;
+    const template = fixture.debugElement.nativeElement;
     fixture.detectChanges();
+
+    // act
     button.click();
     fixture.detectChanges();
 
-    expect(content.innerHTML).toContain('Glovania');
+    // assert
+    expect(template.innerHTML).toContain('Glovania');
     expect(component.first).toBeFalsy();
     expect(component.second).toBeTruthy();
   });
 
   it('should update score if the answer is correct', () => {
+    // arrange
     component.quizAnswer = 'Bmzklfrpz City';
     fixture.detectChanges();
+
+    // act
     component.checkAnswer(component.quizAnswer, 'Bmzklfrpz City');
     fixture.detectChanges();
 
+    // assert
     expect(component.score).toEqual(1);
   });
 
   it('should navigate to score component and pass on the score on submit', () => {
+    // arrange
     component.score = 0;
     const spy = spyOn(component, 'submit').and.callFake(() => router.navigateByUrl('/score', { state: { score: component.score } }));
+
+    // act
     component.submit();
     fixture.detectChanges();
+
+    // assert
     expect(spy).toHaveBeenCalled();
     expect(router.navigateByUrl).toHaveBeenCalledWith('/score', { state: { score: 0 } });
+  });
+
+  it('unsubscribes when destroyed', () => {
+    component.activatedRoutesubscription = new Subscription();
+    component.quizServiceSubscription = new Subscription();
+
+    spyOn(component.activatedRoutesubscription, 'unsubscribe').and.callThrough();
+    spyOn(component.quizServiceSubscription, 'unsubscribe').and.callThrough();
+
+    component.ngOnDestroy();
+
+    expect(component.activatedRoutesubscription.unsubscribe).toHaveBeenCalled();
+    expect(component.quizServiceSubscription.unsubscribe).toHaveBeenCalled();
   });
 });

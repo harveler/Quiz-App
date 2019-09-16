@@ -1,16 +1,19 @@
-import { QuizService } from './../../services/quiz.service';
-import { Component, OnInit } from '@angular/core';
-import { IQuestion } from '../../models/questionmodel';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Question } from '../../models/questionmodel';
 import { map } from 'rxjs/operators';
+import { QuizService } from './../../services/quiz.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-questions-answers',
   templateUrl: './questions-answers.component.html',
   styleUrls: ['./questions-answers.component.css']
 })
-export class QuestionsAnswersComponent implements OnInit {
-  questions: IQuestion[];
+
+export class QuestionsAnswersComponent implements OnInit, OnDestroy {
+  questions: Question[];
+
   first = false;
   second = false;
   third = false;
@@ -23,28 +26,37 @@ export class QuestionsAnswersComponent implements OnInit {
   tenth = false;
   eleventh = false;
   twelfth = false;
+
   score = 0;
+
   quizAnswer: string;
+
+  quizServiceSubscription: Subscription;
+  activatedRoutesubscription: Subscription;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private quizService: QuizService) { }
 
   ngOnInit() {
-    this.activatedRoute.paramMap
+    this.activatedRoutesubscription = this.activatedRoute.paramMap
       .pipe(map(() => window.history.state))
-      .subscribe(res => {
-        if (res === null || res.difficulty === undefined) {
-          this.router.navigate(['quiz']);
-        } else {
-          this.quizService.getQuestions(res.difficulty).subscribe(result => {
-            if (result === null) {
-              return;
-            }
-            this.questions = result;
-            this.first = true;
-          });
-        }
-      },
-        (error) => console.log('error'));
+      .subscribe(
+        (params) => {
+          if (params === null || params.difficulty === undefined) {
+            this.router.navigate(['quiz']);
+          } else {
+            this.quizServiceSubscription = this.quizService.getQuestions(params.difficulty).subscribe(resultQuestions => {
+              if (resultQuestions === null) {
+                return;
+              } else if (resultQuestions.length === 0) {
+                alert('No questions were retrived from the database. Please try again.');
+              } else {
+                this.questions = resultQuestions;
+                this.first = true;
+              }
+            });
+          }
+        },
+        (error) => console.error('oops, an error!', error));
   }
 
   nextQuestion(previous: string, next: string) {
@@ -66,6 +78,11 @@ export class QuestionsAnswersComponent implements OnInit {
 
   submit() {
     this.router.navigateByUrl('/score', { state: { score: this.score } });
+  }
+
+  ngOnDestroy(): void {
+    this.quizServiceSubscription.unsubscribe();
+    this.activatedRoutesubscription.unsubscribe();
   }
 
 }

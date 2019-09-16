@@ -1,13 +1,12 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { TestBed, fakeAsync, inject, tick } from '@angular/core/testing';
+import { Question } from '../models/questionmodel';
 import { QuizService } from './quiz.service';
-import { IQuestion } from '../models/questionmodel';
-import { of } from 'rxjs';
+import { TestBed, fakeAsync, inject, tick } from '@angular/core/testing';
 
 describe('QuizService', () => {
   const difficulty = 1;
 
-  const testData: IQuestion[] = [
+  const testData: Question[] = [
     {
       countryName: 'Berzerkistan',
       options: [{
@@ -56,23 +55,22 @@ describe('QuizService', () => {
         [QuizService, HttpTestingController],
         (quizService: QuizService, backend: HttpTestingController) => {
 
-          // Set up
+          // arrange
           const responseObject = testData;
           let response = null;
-          // End Setup
 
+          // act
           quizService.getQuestions(difficulty).subscribe(
             (receivedResponse: any) => {
               response = receivedResponse;
             },
             (error: any) => { }
           );
-
           const requestWrapper = backend.expectOne({ url: `api/Quiz/GetQuestions/${difficulty}` });
           requestWrapper.flush(responseObject);
-
           tick();
 
+          // assert
           expect(requestWrapper.request.method).toEqual('GET');
           expect(response).toEqual(responseObject);
         }
@@ -87,23 +85,22 @@ describe('QuizService', () => {
         [QuizService, HttpTestingController],
         (quizService: QuizService, backend: HttpTestingController) => {
 
-          // Set up
+          // arrange
           const responseObject = null;
           let response = null;
-          // End Setup
 
+          // act
           quizService.getQuestions(difficulty).subscribe(
             (receivedResponse: any) => {
               response = receivedResponse;
             },
             (error: any) => { }
           );
-
           const requestWrapper = backend.expectOne({ url: `api/Quiz/GetQuestions/${difficulty}` });
           requestWrapper.flush(responseObject);
-
           tick();
 
+          // assert
           expect(requestWrapper.request.method).toEqual('GET');
           expect(response).toBeNull();
         }

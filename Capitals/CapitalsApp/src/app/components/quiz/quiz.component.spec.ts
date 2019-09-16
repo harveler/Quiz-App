@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { QuizComponent } from './quiz.component';
 import { By } from '@angular/platform-browser';
-import { Router } from '@angular/router';
 import { DummyComponent } from 'src/app/testing/mock.components.specs';
+import { QuizComponent } from './quiz.component';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 const router = {
   navigateByUrl: jasmine.createSpy('navigateByUrl')
@@ -40,14 +40,17 @@ describe('QuizComponent', () => {
   });
 
   it('should redirect to questionsComponent when user chooses difficulty', () => {
+    // arrange
     fixture.detectChanges();
     spyOn(component, 'getQuestions').and.callThrough();
     const button = fixture.debugElement.query(By.css('#easy')).nativeElement;
-    fixture.detectChanges();
 
+    // act
+    fixture.detectChanges();
     button.click();
     fixture.detectChanges();
 
+    // assert
     expect(router.navigateByUrl).toHaveBeenCalledWith('questions', { state: { difficulty: 1 } });
     expect(component.getQuestions).toHaveBeenCalled();
   });

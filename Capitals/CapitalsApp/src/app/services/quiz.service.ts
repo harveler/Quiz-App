@@ -1,7 +1,8 @@
-import { IQuestion } from '../models/questionmodel';
+import { catchError } from 'rxjs/operators';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient, HttpClientModule } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { Question } from '../models/questionmodel';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,8 +17,14 @@ export class QuizService {
 
   constructor(private http: HttpClient) { }
 
-  getQuestions(difficulty: number): Observable<IQuestion[]> {
+  getQuestions(difficulty: number): Observable<Question[]> {
     const url = this.endpoint + `GetQuestions/${difficulty}`;
-    return this.http.get<IQuestion[]>(url, httpOptions);
+    return this.http.get<Question[]>(url, httpOptions)
+    .pipe(catchError(this.handleError));
+  }
+
+  private handleError(error: any) {
+    const errorMessage = (error.message) ? error.message : error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+    return throwError(error);
   }
 }
