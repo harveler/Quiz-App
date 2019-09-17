@@ -19,9 +19,10 @@ namespace CapitalsTests
         {
             // arrange
             var service = new QuizService(_context);
+            int difficulty = 1;
 
             // act
-            var result = service.GetQuestions(1);
+            var result = service.GetQuestions(difficulty);
 
             // assert
             Assert.True(result.Count() == 12);
@@ -32,9 +33,10 @@ namespace CapitalsTests
         {
             // arrange
             var service = new QuizService(_context);
+            int difficulty = 4;
 
             // act
-            var result = service.GetQuestions(4);
+            var result = service.GetQuestions(difficulty);
 
             // assert
             Assert.Empty(result);
